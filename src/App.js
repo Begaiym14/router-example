@@ -1,23 +1,46 @@
-import { Route } from 'react-router';
+import { Route, Switch } from 'react-router';
 import './App.css';
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import Contacts from "./components/Contacts/Contacts";
-import { Link } from 'react-router-dom';
+import Posts from "./components/Posts/Posts";
+import { NavLink } from 'react-router-dom';
+import Users from './components/Users/Users';
+
 
 
 
 function App() {
   return (
     <div className="App">
-      <Link className="Link" to="/" >Home</Link>
-      <Link className="Link" to="/about" >About</Link>
-      <Link className="Link" to="/contacts" >Contacts</Link>
+      <ul>
+        <li>
+          <NavLink activeClassName="acive" to="/" exact>Home</NavLink>
+        </li>
+        <li>
+          <NavLink activeClassName="acive" to="/about" >About</NavLink>
+        </li>
+        <li>
+          <NavLink activeClassName="acive" to="/contacts" >Contacts</NavLink>
+        </li>
+        <li>
+          <NavLink activeClassName="acive" to="/posts" >Posts</NavLink>
+        </li>
+        
+      </ul>
 
-      <Route className="Route" path="/" component={Home} exact />
-      <Route className="Route" path="/about" component={About} />
-      <Route className="Route" path="/contacts" component={Contacts} />
+    <Switch>
+      <Route path="/" component={Home} exact/>
+      <Route path="/about" component={About}  /> 
+      <Route path="/contacts" component={Contacts}  />
+      <Route path="/posts" component={Posts} />
+      <Route path="/users" component={Users} />
 
+
+      <Route path="/" render={() => <h1>Page not Found</h1>} />
+       {/* <Redirect to="/" /> returns to the first page*/}
+    </Switch>
+    
     </div>
   );
 }
